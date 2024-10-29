@@ -2,7 +2,6 @@ package com.example.productservice.Controllers;
 
 import com.example.productservice.Dtos.CreateProductRequestDto;
 import com.example.productservice.Dtos.CreateProductResponseDto;
-import com.example.productservice.Dtos.GetProductResponseDto;
 import com.example.productservice.Models.Product;
 import com.example.productservice.Services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,8 +26,7 @@ public class ProductController {
     }
     @GetMapping("{id}")
     public Product getSingleProduct(@PathVariable("id") Long id){
-       Product product = productService.getSingleProduct(id);
-       return product;
+       return productService.getSingleProduct(id);
     }
     @DeleteMapping("{id}")
     public void deleteProduct(){
