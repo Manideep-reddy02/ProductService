@@ -1,12 +1,12 @@
 package com.example.productservice.Controllers;
 
-import com.example.productservice.Dtos.CreateProductRequestDto;
-import com.example.productservice.Dtos.CreateProductResponseDto;
+import com.example.productservice.Dtos.Product.*;
 import com.example.productservice.Models.Product;
 import com.example.productservice.Services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,13 +20,23 @@ public class ProductController {
     }
 
     @GetMapping("")
-    public List<Product> getAllProducts(){
-        return null;
+    public GetAllProductsResponseDto getAllProducts(){
+        List<Product> products = productService.getAllProducts();
+        GetAllProductsResponseDto getAllProductsResponseDto = new GetAllProductsResponseDto();
+        List<GetProductDto> getProductDtoList = new ArrayList<>();
+        for(Product product:products){
+            getProductDtoList.add(GetProductDto.fromProduct(product));
+        }
+        getAllProductsResponseDto.setProductDtoList(getProductDtoList);
+        return getAllProductsResponseDto;
 
     }
     @GetMapping("{id}")
-    public Product getSingleProduct(@PathVariable("id") Long id){
-       return productService.getSingleProduct(id);
+    public GetSingleProductResponseDto getSingleProduct(@PathVariable("id") Long id){
+        Product product = productService.getSingleProduct(id);
+        GetSingleProductResponseDto getSingleProductDto = new GetSingleProductResponseDto();
+        getSingleProductDto.setGetProductDto(GetProductDto.fromProduct(product));
+       return getSingleProductDto;
     }
     @DeleteMapping("{id}")
     public void deleteProduct(){
@@ -37,6 +47,15 @@ public class ProductController {
         Product product = productService.CreateProduct(createProductRequestDto.toProduct());
         return CreateProductResponseDto.fromProduct(product);
 
+    }
+
+    @PatchMapping("{id}")
+    public UpdateProductResponseDto updateProduct(@PathVariable("id") Long id,
+                                                  @RequestBody CreateProductRequestDto createProductRequestDto){
+        Product product = productService.updateProduct(id, createProductRequestDto.toProduct());
+        UpdateProductResponseDto updateProductResponseDto = new UpdateProductResponseDto();
+        updateProductResponseDto.setGetProductDto(GetProductDto.fromProduct(product));
+        return updateProductResponseDto;
     }
 
 

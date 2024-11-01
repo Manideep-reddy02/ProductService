@@ -1,29 +1,26 @@
-package com.example.productservice.Dtos;
+package com.example.productservice.Dtos.FakeStore;
 
 import com.example.productservice.Models.Product;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class CreateProductRequestDto {
+@Getter@Setter
+public class FakeStoreProductResponseDto {
     private Long id;
     private String title;
-    private String imageurl;
     private double price;
     private String description;
-    private String categoryName;
+    private String category;
+    private String image;
 
     public Product toProduct(){
-        Product product= new Product();
+        Product product = new Product();
+        product.setId(this.id);
         product.setPrice(this.price);
-       product.setImageUrl(this.imageurl);
         product.setTitle(this.title);
         product.setDescription(this.description);
-        product.setCategoryName(this.categoryName);
-        product.setId(this.id);
+        product.setImageUrl(this.image);
+        product.setCategoryName(this.category);
         return product;
-
     }
-
 }

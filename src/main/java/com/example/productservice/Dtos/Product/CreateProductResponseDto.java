@@ -1,9 +1,9 @@
-package com.example.productservice.Dtos;
+package com.example.productservice.Dtos.Product;
 
 import com.example.productservice.Models.Product;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.context.annotation.Primary;
+
 @Getter
 @Setter
 public class CreateProductResponseDto {

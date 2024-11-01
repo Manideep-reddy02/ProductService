@@ -25,5 +25,10 @@ public class ProductServiceDB implements ProductService{
         return null;
     }
 
+    @Override
+    public Product updateProduct(Long id, Product product) {
+        return null;
+    }
+
 
 }
