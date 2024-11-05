@@ -6,14 +6,15 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
-public class Product extends BaseModel{
-    private String title;
-    private String imageUrl;
-    private Double price;
-    private String description;
-    @ManyToOne
-    private Category category;
+public class Category extends BaseModel {
+    String name;
+    String description;
+    @OneToMany(mappedBy = "category")
+    List<Product> products;
+
 }

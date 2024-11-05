@@ -8,13 +8,13 @@ import lombok.Setter;
 @Setter
 public class FakeStoreProductRequestDto {
     private String title;
-    private double price;
+    private Double price;
     private String description;
     private String category;
     private String image;
     public static FakeStoreProductRequestDto fromProduct(Product product){
         FakeStoreProductRequestDto fakeStoreProductRequestDto = new FakeStoreProductRequestDto();
-        fakeStoreProductRequestDto.setCategory(product.getCategoryName());
+        fakeStoreProductRequestDto.setCategory(product.getCategory().getName());
         fakeStoreProductRequestDto.setTitle(product.getTitle());
         fakeStoreProductRequestDto.setDescription(product.getDescription());
         fakeStoreProductRequestDto.setPrice(product.getPrice());

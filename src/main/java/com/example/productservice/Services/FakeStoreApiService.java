@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service("FakeStoreProductService")
@@ -24,7 +25,7 @@ public class FakeStoreApiService implements ProductService{
     @Override
     public Product CreateProduct(Product product) {
         FakeStoreProductRequestDto requestDto = new FakeStoreProductRequestDto();
-        requestDto.setCategory(product.getCategoryName());
+        requestDto.setCategory(product.getCategory().getName());
         requestDto.setImage(product.getImageUrl());
         requestDto.setDescription(product.getDescription());
         requestDto.setPrice(product.getPrice());
@@ -51,11 +52,16 @@ public class FakeStoreApiService implements ProductService{
 
     @Override
     public Product getSingleProduct(Long id) {
-        FakeStoreProductResponseDto fakeStoreProductResponseDto =
-                restTemplate.getForObject("https://fakestoreapi.com/products/"+id,
-                        FakeStoreProductResponseDto.class) ;
-        return fakeStoreProductResponseDto.toProduct();
+        return null;
     }
+
+//    @Override
+//    public Optional<Product> getSingleProduct(Long id) {
+//        FakeStoreProductResponseDto fakeStoreProductResponseDto =
+//                restTemplate.getForObject("https://fakestoreapi.com/products/"+id,
+//                        FakeStoreProductResponseDto.class) ;
+//        return fakeStoreProductResponseDto.toProduct();
+//    }
 
     @Override
     public Product updateProduct(Long id, Product product) {

@@ -11,12 +11,12 @@ public class CreateProductResponseDto {
     private String title;
     private String imageUrl;
     private String Category;
-    private double price;
+    private Double price;
     private String description;
     public static CreateProductResponseDto fromProduct(Product product){
         CreateProductResponseDto responseDto = new CreateProductResponseDto();
         responseDto.setId(product.getId());
-        responseDto.setCategory(product.getCategoryName());
+        responseDto.setCategory(product.getCategory().getName());
         responseDto.setDescription(product.getDescription());
         responseDto.setPrice(product.getPrice());
         responseDto.setImageUrl(product.getImageUrl());

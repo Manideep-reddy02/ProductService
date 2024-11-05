@@ -1,6 +1,7 @@
 package com.example.productservice.Controllers;
 
 import com.example.productservice.Dtos.Product.*;
+import com.example.productservice.Exceptions.ProductNotFoundException;
 import com.example.productservice.Models.Product;
 import com.example.productservice.Services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ProductController {
     private ProductService productService;
 
-    public ProductController(@Qualifier("FakeStoreProductService") ProductService productService){
+    public ProductController(@Qualifier("DBProductService") ProductService productService){
         this.productService = productService;
     }
 
@@ -51,7 +52,7 @@ public class ProductController {
 
     @PatchMapping("{id}")
     public UpdateProductResponseDto updateProduct(@PathVariable("id") Long id,
-                                                  @RequestBody CreateProductRequestDto createProductRequestDto){
+                                                  @RequestBody CreateProductRequestDto createProductRequestDto) throws ProductNotFoundException {
         Product product = productService.updateProduct(id, createProductRequestDto.toProduct());
         UpdateProductResponseDto updateProductResponseDto = new UpdateProductResponseDto();
         updateProductResponseDto.setGetProductDto(GetProductDto.fromProduct(product));

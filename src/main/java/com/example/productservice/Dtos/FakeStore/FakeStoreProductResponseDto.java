@@ -1,5 +1,6 @@
 package com.example.productservice.Dtos.FakeStore;
 
+import com.example.productservice.Models.Category;
 import com.example.productservice.Models.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,9 @@ public class FakeStoreProductResponseDto {
         product.setTitle(this.title);
         product.setDescription(this.description);
         product.setImageUrl(this.image);
-        product.setCategoryName(this.category);
+        Category category = new Category();
+        category.setName(this.category);
+        product.setCategory(category);
         return product;
     }
 }

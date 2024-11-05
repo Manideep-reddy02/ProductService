@@ -1,8 +1,11 @@
 package com.example.productservice.Dtos.Product;
 
+import com.example.productservice.Models.Category;
 import com.example.productservice.Models.Product;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Optional;
 
 @Getter@Setter
 public class GetProductDto {
@@ -15,7 +18,7 @@ public class GetProductDto {
     public static GetProductDto fromProduct(Product product){
         GetProductDto responseDto = new GetProductDto();
         responseDto.setId(product.getId());
-        responseDto.setCategory(product.getCategoryName());
+        responseDto.setCategory(product.getCategory().getName());
         responseDto.setDescription(product.getDescription());
         responseDto.setPrice(product.getPrice());
         responseDto.setImageUrl(product.getImageUrl());
@@ -28,7 +31,9 @@ public class GetProductDto {
         product.setImageUrl(this.imageUrl);
         product.setTitle(this.title);
         product.setDescription(this.description);
-        product.setCategoryName(this.Category);
+        Category category = new Category();
+        category.setName(this.Category);
+        product.setCategory(category);
         product.setId(this.id);
         return product;
 
