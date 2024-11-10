@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
 @ControllerAdvice
-@RestController
+//@RestController
 public class ExceptionAdvice {
 
     @ExceptionHandler(Exception.class)

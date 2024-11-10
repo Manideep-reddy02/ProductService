@@ -60,7 +60,7 @@ public class ProductServiceDB implements ProductService{
     public Product updateProduct(Long id, Product product) throws ProductNotFoundException {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if(optionalProduct.isEmpty()) {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException("Product not found in DB");
         }
         Product productToUpdate = optionalProduct.get();
         if(product.getDescription()!=null){
